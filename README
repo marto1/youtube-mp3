@@ -1,1 +1,3 @@
-request a converted to mp3 youtube video from youtube-mp3.org.
+Request a converted to mp3 youtube video from youtube-mp3.org.
+
+Depends on: python 2.7.x, requests, docopt
