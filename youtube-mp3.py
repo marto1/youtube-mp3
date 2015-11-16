@@ -3,7 +3,7 @@
 youtube-mp3.org utility.
 
 Usage: 
-youtube-mp3.py [--autoend] <url> <path>
+youtube-mp3.py [--autoend] [--chunk=<bytes>] <url> <path>
 
 Examples:
   youtube-mp3.py list
@@ -11,6 +11,7 @@ Examples:
 Options:
   -h, --help
   --autoend    auto append ".mp3" to the file if not present.
+  --chunk=<bytes>  buffer size when writing to file [default: 2048].
 """
 from docopt import docopt
 import requests
@@ -82,7 +83,7 @@ def sig(H):
     N = round(N * 1000)
     return int(N)
 
-def download(url, filename, endwithmp3 = True):
+def download(url, filename, endwithmp3 = True, chunk=2048):
     """Fetch and save url to specified path."""
     URL=urllib.quote_plus(url)
     form = "http://www.youtube-mp3.org/a/pushItem/?item={0}&el=na&bf=false"
@@ -109,7 +110,7 @@ def download(url, filename, endwithmp3 = True):
     if not filename.endswith(".mp3") and endwithmp3:
         filename += ".mp3"
     with open(filename, 'wb') as f:
-        for chunk in r.iter_content(chunk_size=2048): #FIXME option
+        for chunk in r.iter_content(chunk_size=chunk):
             if chunk: # filter out keep-alive new chunks
                 f.write(chunk)
 
@@ -118,4 +119,5 @@ if __name__ == '__main__':
     arguments = docopt(__doc__)
     download(arguments["<url>"],
              arguments["<path>"],
-             arguments["--autoend"])
+             arguments["--autoend"],
+             int(arguments["--chunk"]))
