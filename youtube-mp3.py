@@ -83,30 +83,37 @@ def sig(H):
     N = round(N * 1000)
     return int(N)
 
+def prepare_url(formatstr, *args):
+    """Format string and attach hash value."""
+    rq = formatstr.format(*args)
+    rq += "&s={0}".format(sig(rq))
+    return rq
+
+def prepare_and_send_url(stream, formatstr, *args):
+    """
+    Send a formatted string and return response object.
+    Uses default header values.
+    """
+    rq = prepare_url(formatstr, *args)
+    r = requests.get(rq, stream=stream, headers=HEADERS)
+    return r
+
 def download(url, filename, endwithmp3 = True, chunk=2048):
     """Fetch and save url to specified path."""
     URL=urllib.quote_plus(url)
-    form = "http://www.youtube-mp3.org/a/pushItem/?item={0}&el=na&bf=false"
-    form += "&r={1}"
-    form2 = "http://www.youtube-mp3.org/a/itemInfo/?video_id={0}"
-    form2 += "&ac=www&t=grp&r={1}"
+    form = "{0}/a/pushItem/?item={1}&el=na&bf=false&r={2}"
+    form2 = "{0}/a/itemInfo/?video_id={1}&ac=www&t=grp&r={2}"
+    form3 = "{0}/get?video_id={1}&ts_create={2}&r={3}&h2={4}"
     timestamp = int(time.time()*1000)
-    rq = form.format(URL, timestamp)
-    rq += "&s={0}".format(sig(rq))
-    r = requests.get(MAIN, headers=HEADERS)
-    r = requests.get(rq, headers=HEADERS)
+    r = prepare_and_send_url(False, form, MAIN, URL, timestamp)
     video_id = r.text
-    rq = form2.format(video_id, timestamp)
-    rq += "&s={0}".format(sig(rq))
-    r = requests.get(rq, headers=HEADERS)
+    r = prepare_and_send_url(False, form2, MAIN, video_id, timestamp)
     json_data = json.loads(r.text[7:-1])
     ts_create = json_data[u'ts_create']
     h2 = json_data[u'h2']
     r_data = urllib.quote_plus(json_data[u'r'])
-    form3 = "{0}/get?video_id={1}&ts_create={2}&r={3}&h2={4}"
-    rq = form3.format(MAIN, video_id, ts_create, r_data, h2)
-    rq += "&s={0}".format(sig(rq))
-    r = requests.get(rq, stream=True)
+    r = prepare_and_send_url(True, form3, MAIN, video_id,
+                             ts_create, r_data, h2)
     if not filename.endswith(".mp3") and endwithmp3:
         filename += ".mp3"
     with open(filename, 'wb') as f:
