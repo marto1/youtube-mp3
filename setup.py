@@ -30,9 +30,14 @@ setup(
     long_description=read('README'),
     classifiers     = [
         'License :: OSI Approved :: MIT License',
-        'Topic :: Software Development :: Libraries',
+        'Topic :: Utilities',
+        'Topic :: Internet :: WWW/HTTP',
+        'Topic :: Internet',
+        'Topic :: Multimedia',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
     ],
         install_requires=["docopt", "requests",],
     entry_points={
