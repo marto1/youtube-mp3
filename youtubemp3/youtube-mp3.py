@@ -20,6 +20,12 @@ import sys
 import urllib
 import json
 
+import platform    
+if platform.python_version().startswith('3.4'):
+    import urllib.parse
+    urllib.quote_plus = urllib.parse.quote
+    unicode = lambda x, y: x
+
 MAIN="http://www.youtube-mp3.org"
 #Choose an agent here
 A="Mozilla/5.0 (X11; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0"

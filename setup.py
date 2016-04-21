@@ -40,9 +40,5 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
         install_requires=["docopt", "requests",],
-    entry_points={
-        'console_scripts': [
-            'sample=sample:main',
-        ],
-    },
+    scripts=['youtubemp3/youtubemp3']
 )
