@@ -3,7 +3,8 @@
 #   @license        MIT/X11
 #   @date           21/04/2016 (dd-mm-yyyy)
 #
-from setuptools import setup, find_packages
+from setuptools import setup
+import os
 
 VERSION = {
         'major' : 0,
@@ -40,5 +41,5 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
         install_requires=["docopt", "requests",],
-    scripts=['youtubemp3/youtubemp3']
+    scripts=['youtubemp3/youtube-mp3.py']
 )
