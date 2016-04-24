@@ -9,7 +9,7 @@ import os
 VERSION = {
         'major' : 0,
         'minor' : 1,
-        'patch' : 1,
+        'patch' : 2,
         }
 
 def read(fname):
