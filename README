@@ -16,3 +16,9 @@ Options:
   -h, --help
   --autoend    auto append ".mp3" to the file if not present.
   --chunk=<bytes>  buffer size when writing to file [default: 2048].
+
+
+NOTE:
+
+There are limitations to using the service. You cannot download video longer than 20 minutes.
+Also, the video could be marked to be not downloadable. 

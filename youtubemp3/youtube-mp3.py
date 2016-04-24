@@ -20,8 +20,11 @@ import sys
 import urllib
 import json
 
-import platform    
-if platform.python_version().startswith('3.4'):
+import platform
+VER = platform.python_version()
+PY34 = VER.startswith('3.4')
+PY35 = VER.startswith('3.5')
+if PY34 or PY35:
     import urllib.parse
     urllib.quote_plus = urllib.parse.quote
     unicode = lambda x, y: x

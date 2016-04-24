@@ -9,7 +9,7 @@ import os
 VERSION = {
         'major' : 0,
         'minor' : 1,
-        'patch' : 0,
+        'patch' : 1,
         }
 
 def read(fname):
@@ -39,6 +39,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
         install_requires=["docopt", "requests",],
     scripts=['youtubemp3/youtube-mp3.py']
