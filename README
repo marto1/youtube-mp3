@@ -1,6 +1,6 @@
 Request a converted to mp3 youtube video from youtube-mp3.org.
 
-Depends on: python 2.7.x/3.4, requests, docopt
+Depends on: python 2.7/3.4/3.5, requests, docopt
 
 
 Usage: 
