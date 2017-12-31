@@ -24,7 +24,8 @@ import platform
 VER = platform.python_version()
 PY34 = VER.startswith('3.4')
 PY35 = VER.startswith('3.5')
-if PY34 or PY35:
+PY36 = VER.startswith('3.6')
+if PY34 or PY35 or PY36:
     import urllib.parse
     urllib.quote_plus = urllib.parse.quote
     unicode = lambda x, y: x
