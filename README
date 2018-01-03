@@ -1,3 +1,12 @@
+IMPORTANT NOTICE:
+The script relies entirely on youtube-mp3.org for converting and
+downloading. The service was recently shut down as noted here:
+http://www.dailymail.co.uk/sciencetech/article-4853772/YouTube-MP3-org-agrees-shut-sued.html. 
+I am yet to find a back end as good as youtube-mp3.org to transition
+to to make the script functional again. As of now, however, the script
+is not functional and you'll get [Errno 111] Connection refused from
+the service.
+
 Request a converted to mp3 youtube video from youtube-mp3.org.
 
 Depends on: python 2.7/3.4/3.5, requests, docopt
